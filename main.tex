@@ -42,20 +42,50 @@
 \section{Project overview}
 \label{sec:Project Overview}
 
-\resetgeometry
+%A statistical physics stochastic convection parametrization scheme such as \cite{plant2008stochastic} requires a characterization of the unresolved pro
+One route to providing scale-awareness in a deep convection parametrization scheme is through the use of a statistical physics parametrization scheme \parencite{plant2008stochastic}. In such a scheme, the breakdown of the quasi-equilibrium assumption of \cite{arakawa1974interaction} is modelled by assuming that the number and strength of clouds in a given region can be represented by sampling from a probability density function (PDF) distribution. This requires suitable PDFs from which to sample. In \cite{plant2008stochastic}, the distributions were first derived from theory \parencite{craig2006fluctuations}, and then were tested against numerical simulations from a Cloud Resolving Model (\todo{combine acronym and citation} CRM) \parencite{cohen2006fluctuations}. The CRM simulates an atmosphere in Radiative-Convective Equilibrium (RCE), with prescribed cooling representing radiation, so that the dynamics of the cloud to cloud interactions can be tested without the complicating addition of radiative feedbacks. A stochastic convection scheme such as this provides scale-awareness in the soft grey zone (\SI{10}{}-\SI{100}{km}) by broadening the distribution of the PDFs as the resolution of the model increases, which provides higher sub-grid variability as the grid-scale decreases.
+
+Organization of deep convection in the atmosphere can take many forms, such as squall lines, tropical cyclones, mesoscale clusters and larger scale features such as the Madden-Julian oscillation. In the interests of choosing a problem that is interesting, tractable and on which significant progress can be made within the time scale of a PhD, we are focusing on squall lines, and how these might be represented in a deep convection parametrization scheme that is scale-aware. The route that we are taking to do this is to ask the question: ``What effect does convective organization have on the overall cloud statistics of idealized RCE models?'' (See PhD Plan, Question 1). We are varying the organization through the use of systematically varying shear profiles, as has been done in other studies \parentite{RE2001, CC2006II}. What makes our approach novel is that in \cite{CC2006II}, they only look at three different profiles that are not varied systematically, and do not provide details of how the statistics change with the shear profiles. In \cite{RE2001}, they do not look at the statistics of the convection, instead focusing on equilibrium thermodynamic and momentum flux profiles \todo{what else?}. 
+
+We have presented our results in a companion paper \parencite{muetz2017effects}, and we find that there are specific changes as the shear is increased, and these are identifiable under different types of analysis. We summarize three key results here. First, linearly scaled deep shear profiles taken from the Marshall Islands experiments \cite{yanai} can be used to stimulate organization, with low shear cases showing little sign of clustering beyond around \SI{15}{km}. High shear cases show signs of clustering at up to \SI{50}{km}, and significant repression of convection at larger spatial scales. An intermediate case is identified, where there is some clustering and repulsion, but less in magnitude than the more organized cases. Identifying this case is possible because of the the use of varying profiles and performing the analysis of spatial clustering on all of these profiles. Second, we find that there is a clear relationship between the strength of shear and the mass flux per cloud: as the shear increases, the number of clouds with low mass fluxes decreases and the maximum mass flux per cloud increases. Third, we observe that the mass flux distribution's variance increases as the spatial scale of the analysis is increased, in a manner similar to that seen in \cite{plant2008stochastic}. The analysis of spatial scales also reinforces the finding that the mass flux per cloud increases as the shear increases \todo{does it?}.
+
+This work goes someway towards answering the question posed above. It therefore provides a route to modifying a stochastic convection parametrization scheme so that it includes some of the effects of organization. It only goes part of the way though, the subsequent questions raised in my PhD Plan will provide the link between working how the statistics change with shear and how to modify the convection parametrization scheme. Further questions are raised in \cite{muetz2017effects}. 
 
 \subsection{Background reading}
 
+I have been reading key papers that discuss the mechanisms for formation of squall lines. From an observational perspective, \cite{houze1977} gives a detailed account of a squall line detected off the west coast of Africa. Reading such observational studies gives me an appreciation of the key properties of squall lines, such as the amount of precipitation caused by the convective plumes versus the amount caused by the trailing stratiform region. It help keep me grounded as well, by reminding me that the simulations of squall lines that I am generating using an idealized CRM are no more than crude representations of the real thing, no matter how high the resolution used or detailed the microphysics.
+
+In terms of mechanisms for the formation of squall lines, \cite{TMM} provides a good starting point, with its focus on an extremely simplified mathematical model for how these organized features are generated. \todo{more}
+
+\cite{RKW1988} argues forcefully that low level shear is the key mechanism for the generation of optimal, long-lived squall lines. The low level shear, they argue, is necessary to generate optimal squall lines because it has opposite vorticity to the vorticity of the propagating cold pools formed by convection. The proposed mechanism creates a long-lived feature through preferential creation of daughter convective cells on the upshear side of the existing cells, and thus individual cells are not hypothesized to be long-lived. This backs up certain observational studies, such as that by \cite{houze}. There are noticeable absences from this picture though: namely they do not link the strength of the cold pool to the microphysical processes that cause it, and they do not claim to provide a mechanism for how the squall line with a long spatial extent forms. Two of the authors re-appraised their original work several years later: they find that the evidence for their mechanism still supports the numerical studies and observations \todo{check this}.
+
+One study that had a large influence on my thinking was \cite{RE2001}. Here they look at the specific mechanism suggested by \cite{RKW1988} in some detail, performing systematic experiments with different shear profiles. They find \todo{}. As noted in \ref{sec:Project Overview}, they do not perform the kind of statistical analysis that we have performed though.
+
+\todo{Chris Holloway's recent paper}
+
+\todo{Sengupta et al.}
+
+\todo{Stochastic Parameterization}
+
 \section{Completed work}
 
-\subsection{Modelling}
-\label{sec:modelling}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=400px]{figs/{u-an388_graph}.png}
-    \caption{}
-    \label{fig:cylc_graph}
-\end{figure} 
+\subsection{Modelling of organized convection}
+\label{sec:modelling_org}
+
+
+
+\subsection{Analysis}
+\label{sec:analysis}
+
+\subsection{Model configuration}
+\label{sec:modelling_config}
+
+\subsection{Modelling workflow}
+\label{sec:modelling_workflow}
+
+\subsection{Issues encountered}
+\label{sec:issues}
+
 \section{Future work}
 % As set out in my PhD Plan...
 
@@ -70,6 +100,13 @@
 
 \newpage
 \section*{Appendix}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=400px]{figs/{u-an388_graph}.png}
+    \caption{}
+    \label{fig:cylc_graph}
+\end{figure} 
 
 \subsection*{Training record}
 \subsubsection*{Year 1}
