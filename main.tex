@@ -12,6 +12,7 @@
 \newcommand{\ts}{\textsuperscript}
 \newcommand{\ic}{\texttt}
 \newcommand{\todo}{TODO: \texttt}
+\sisetup{detect-weight=true, detect-family=true}
 
 \usepackage[backend=biber,style=authoryear,sorting=nyt,dashed=false]{biblatex}
 \renewcommand*{\nameyeardelim}{\addcomma\space}
@@ -120,6 +121,16 @@ One study that had a large influence on my thinking was \cite{RE2001}. Here they
 % - resolution
 % Lack of org. using LLS
 % Energy balance
+\subsubsection{Domain-scale oscillations}
+In trying to perform similar experiments to other studies in the literature, I have encountered some issues which I have either worked around or done my best to explain. When trying to run with higher cooling rates, \SI{4}{K.day^{-1}}-\SI{16}{K.day^{-1}} as was done in \cite{cohen2006fluctuations}, at \SI{1}{km} horizontal resolution, large domain-scale oscillations built up. These oscillations are hypothesized to be convectively coupled gravity waves, with a wavelength equal to the largest scale available to them - the length of the domain. These oscillations are an artefact of the biperiodic boundary conditions, and are therefore in no way physically realistic. Accordingly, I have avoided prescribed cooling rates this high. However, the initial experiments were done without gravity wave damping turned on. Gravity wave damping is applied in the upper atmosphere, from \SI{30}{km} to \SI{40}{km}.
+
+I have also seen similar domain-scale oscillations with cooling rates of \SI{2}{K.day^{-1}}. However, this was using an initial $\theta$ and water vapour profile taken from a simulation that is believed to have been unstable. To ameliorate this, I reverted to a previous initial profile that was originally used for the Large Eddy Model (LEM). This is the reason why we needed to use such long spin-up times in the companion paper.
+
+\subsubsection{Lack of organization using low-level shear profile}
+One study that had a large influence on our companion paper was \cite{RE2001}. In their study, they use low-level shear to stimulate organization in the form of squall lines, following the theoretical work of \cite{RKW1988}. In some experiments they use shear profiles only in the lower \SI{2}{km} of the troposphere to generate squall lines. However, when I ran with similar shear profiles, I saw no similar organized convection. I tried running with higher cooling rates to produce more clouds in the domain, and with different strengths of shear (equivalent to their I0-I5 experiments). None of these experiments induced similar linear features, although some of the experiments with stronger shears and larger cooling rates did produce shear parallel linear features, that are perhaps squall lines of a different kind \parencite{parker}. I would still like to manage to create squall lines using these kinds of profile as first it would provide a simpler shear profile than the one we have used, and second it would fit in with the theory of \cite{RKW1988}.
+
+\subsubsection{Energy balance}
+After spending a lot of time working on moisture balance in the idealized UM, a similar problem with energy balance became apparent. Essentially, for the amount of cooling we are prescribing, we would expect the surface heat fluxes to be larger by \SI{XXX}{W.m^{-2}} to \SI{XXX}{W.m^{-1}}, depending on the shear profile. This is a large imbalance, although work by Todd Jones has found that it mainly affects the stratosphere, and is thus far away from our region of study. While this is acceptable, it would inspire more confidence in the model if it were to balance energy. Todd Jones, and others at the Met Office, are working on this. A bug has recently been found, whereby dry mass conservation is not applied in the idealized case. I have not had time to try the fix but this could have some effect on the energy balance discrepancy, and possible also the moisture balance discrepancy, that I have seen.
 
 \section{Future work}
 
@@ -186,7 +197,7 @@ My duties as a member of the PostGraduate Research (PGR) forum have increased - 
   \item RRDP: You and your supervisor (11/11/2015)
   \item RRDP: Quality assurance in research (18/11/2015)
   \item RRDP (equivalent): UM Training (16-18/12/2015)
-  \item RRDP (equivalent): Preparing to teach: Introduction to teaching and Learning (26/1/2016)
+  \item RRDP (equivalent): Preparing to teach: Introduction to teaching and learning (26/1/2016)
   \item Preparing to teach: Marking and feedback (26/1/2016)
   \item Preparing to teach: Laboratory demonstrating and leading small groups (27/1/2016)
   \item MONC Training course (9-10/2/2016)
