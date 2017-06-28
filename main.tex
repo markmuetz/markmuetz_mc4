@@ -117,20 +117,32 @@ One study that had a large influence on my thinking was \cite{RE2001}. Here they
 % poss causes:
 % - cooling rate
 % - init profile
+% - resolution
 % Lack of org. using LLS
 % Energy balance
 
 \section{Future work}
-% As set out in my PhD Plan...
+
+\subsection{Cell tracking}
+\label{sec:cell_tracking}
+
+In the companion paper we noted that we subjectively observed convective cells having longer lifetimes when the model was subjected to a shear profile. It would be beneficial to be able to quantify this relationship, because this provides a possible means for modifying a stochastic deep cumulus parametrization scheme. The lifetime of a convective cell in \cite{plant2008stochastic} is taken as being a constant. If we could determine how the lifetimes depended on the shear then we would have another route for modifying the scheme. To determine these lifetimes quantitatively, I would like to use a cell tracking procedure. In the department, Thorwald Stein and Juwon Kim have developed such a procedure in Python, so this would seem like a natural candidate for me to use. This also ties in with the research of \cite{plant2009statistical}, where they use cloud tracking to find statistical properties of the lifetimes of clouds. 
 
 \subsection{\SI{1}{km} resolution modelling}
 \label{sec:1km_res}
 
+In the near term (2 months), I will be repeating the analysis that I have performed so far at \SI{2}{km} resolution on \SI{1}{km} resolution simulations. From previous work, I believe that the organized convective structures that are produced by the higher-resolution simulations will be more realistic, and that \SI{1}{km} resolution should resolve the deep cumulus convection that we are in interested in more adequately. The analysis code that I have written should work with minimal changes at this resolution, so I do not foresee many problems with running these simulations. I would like to improve the initial profiles of $\theta$ and water vapour before doing these runs however, as this will reduce the required spin-up time and therefore the overall run time of the simulations. It is worth noting that the storage requirements will go up by a factor of 4 for these simulations, and so the time (and memory) required to perform the analysis will also increase. I will be paying close attention to the qualitative behaviour of these runs, making sure that the results are consistent with the runs at \SI{2}{km}. I will also be able to do direct quantitative comparisons between the two resolutions, as the analysis will be almost identical.
+
 \subsection{\SI{250}{m} resolution modelling}
+\label{sec:250m_res}
 
-\subsection{Running stochastic convection parametrization}
+Building on the exploratory runs at \SI{250}{m}, I would like to perform similar experiments to the ones carried out at \SI{2}{km} at these resolutions. As with the \SI{1}{km} runs, it will be highly desirable to have good initial profiles to reduce spin-up time for these runs. There are some changes that are necessary to run at these resolutions. These include the need to increase the vertical resolution, to better resolve the vertical structure of the updraughts and downdraughts. This will probably use a resolution profile from the SingV model, or a custom one used for other high-resolution studies developed by Kirsty Hanley. The timestep of the model will also have to decrease for stability reasons. 
 
-\subsection{Cell tracking}
+The increased spatial and temporal resolution lead to increased computational requirements of the order of 200 times higher than the \SI{2}{km} runs (64 times for the spatial, 3 times for temporal). There will also be large increases in the size of the storage requirements for the output. Both of these will necessitate careful planning and picking of diagnostics from the model, as each extra field that is output will come with extra costs. It also means that the analysis that I run at lower-resolutions may not work out of the box, as it may consume too much memory or take prohibitively long to run. I am mindful of these constraints but see none of them as insurmountable.
+
+\subsection{Running a stochastic convection parametrization scheme}
+
+Before the next monitoring committee in December, I would like to have started running some tests using a stochastic parametrization scheme in an idealized RCE model. One of the ParaCon postdoctoral researchers, Jian-Feng Gu, has some experience of running the idealized RCE version of the UM, using the Gregory-Rowntree convection parametrization scheme \parencite{gregory1990mass}, so I will be talking with him to find out suitable settings and initial profiles to use for these runs. I will be using a modified version of the Plant-Craig scheme \parencite{plant2008stochastic}, with modifications to include some of the effects of shear.
 
 \section{Training record}
 \label{sec:Training record}
@@ -207,7 +219,7 @@ My duties as a member of the PostGraduate Research (PGR) forum have increased - 
   \item ParaCon plenary 2 in Leeds (6-7/12/2016)
   \item RMetS talks: Chaos and Confidence in Weather Forecasting (14/12/2016)
   \item ParaCon plenary 3 in Cambridge (3-4/7/2017)
-  \item The Future of Cumulus Parameterization, Delft University of Technology (10-14/7/2017)
+  \item The Future of Cumulus Parametrization, Delft University of Technology (10-14/7/2017)
 \end{itemize}
 
 \subsection*{Talks and conferences presented at}
@@ -215,7 +227,7 @@ My duties as a member of the PostGraduate Research (PGR) forum have increased - 
 \begin{itemize}
   \item Presentation: "Effects of Shear on Cloud Field Organization". \textit{Quo Vadis}, University of Reading (1/2/2017)
   \item Poster: "Effects of Shear on Cloud Field Organization". Met Office Academic Partnership (MOAP), Met Office, Exeter (22/2/2017)
-  \item Poster: "Effects of Vertical Shear on Cloud Field Organization and Variability". The Future of Cumulus Parameterization, Delft University of Technology (10-14/7/2017)
+  \item Poster: "Effects of Vertical Shear on Cloud Field Organization and Variability". The Future of Cumulus Parametrization, Delft University of Technology (10-14/7/2017)
 \end{itemize}
 
 \end{document}
